@@ -92,3 +92,12 @@ solo dopo aver settato onlyfullgroupby risolto . prima dava errore.
 
 7. BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
 superare ciascuno dei suoi esami
+
+SELECT `students`.`id`,`students`.`name`, `students`.`surname`,`exams`.`id`,`exams`.`course_id`, COUNT(`exams`.`course_id`) as tentativi
+FROM `students`
+INNER JOIN `exam_student`
+ON `students`.`id` = `exam_student`.`student_id`
+INNER JOIN `exams`
+ON `exams`.`id`=`exam_student`.`exam_id`
+GROUP BY `students`.`id` ,`exams`.`course_id`
+ORDER BY `students`.`id`
